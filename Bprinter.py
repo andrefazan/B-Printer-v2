@@ -11,7 +11,7 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
 
-
+# fix this function (file is not in the folder)
 # reading folder directory backup
 with open(r'backup-directory.txt', 'r') as f:
         folder_location_program = f.readline() 
@@ -25,6 +25,7 @@ def get_the_folder_location():
     with open(r'backup-directory.txt', 'w') as f:
         f.write(folder_location_program)  
     f.close()
+
 
 
 # starting interface
