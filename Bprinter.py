@@ -13,7 +13,7 @@ from tkinter import messagebox
 
 
 # reading folder directory backup
-with open(r'D:\Desktop\Fresh Python\Projects_1\Bronha-Printer-v2\backup-directory.txt', 'r') as f:
+with open(r'backup-directory.txt', 'r') as f:
         folder_location_program = f.readline() 
 f.close()
 
@@ -22,7 +22,7 @@ def get_the_folder_location():
     folder_location_program = filedialog.askdirectory()
     label_where_to_save.delete(0, END)
     label_where_to_save.insert(INSERT, folder_location_program)    
-    with open(r'D:\Desktop\Fresh Python\Projects_1\Bronha-Printer-v2\backup-directory.txt', 'w') as f:
+    with open(r'backup-directory.txt', 'w') as f:
         f.write(folder_location_program)  
     f.close()
 
@@ -38,10 +38,16 @@ root.resizable(False,False)
 #line 0
 label_version_text = Label(root, text='version 2.0', fg="blue4").grid(row= 0, column=0)
 #line 1
-logo_img = PhotoImage (file = r"D:\Desktop\Fresh Python\Projects_1\Bronha-Printer-v2\new-logo-img.png")
-label_logo_img = Label(root, image= logo_img ).grid(row=0, column=3, rowspan=2)
-logo_title = PhotoImage (file = r"D:\Desktop\Fresh Python\Projects_1\Bronha-Printer-v2\title.png")
-label_logo_title = Label(root, image= logo_title ).grid(row=1, column=2)
+base_img_logo = os.path.dirname(__file__)
+logo_img_path = os.path.join(base_img_logo, 'new-logo-img.png')
+logo_img = PhotoImage (file = logo_img_path)
+
+base_img_title = os.path.dirname(__file__)
+logo_img_title_path = os.path.join(base_img_title, 'title.png')
+logo_title = PhotoImage (file = logo_img_title_path)
+
+label_logo_title = Label(root, image= logo_title, compound='top' ).grid(row=1, column=2)
+label_logo_img = Label(root, image= logo_img, compound='top' ).grid(row=0, column=3, rowspan=2)
 #line 2
 label_where_to_save = Entry(root, width=60)
 label_where_to_save.grid(row=2, column=1, columnspan=4)
@@ -77,7 +83,14 @@ label_infos = Listbox(root, height=8, width=50, fg="blue4", bg ="gray80")
 label_infos.grid(row= 11, column=1, columnspan=2, sticky='w')
 button_zip_file = Button(root, text='Zip Files').grid(row=11, column=3)
 
+#label_infos.insert(1, 'PRINTS-PROG-Vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+#label_infos.insert(2, 'PRINTS-PROG-Vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+#label_infos.insert(3, 'PRINTS-PROG-Vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+#label_infos.insert(4, 'PRINTS-PROG-Vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+#label_infos.insert(5, 'PRINTS-PROG-Vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+#label_infos.insert(6, 'PRINTS-PROG-Vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+#label_infos.insert(7, 'PRINTS-PROG-Vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+#label_infos.insert(8, 'PRINTS-PROG-Vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+#label_infos.insert(9, 'PRINTS-PROG-Vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+
 root.mainloop()
-
-
-
