@@ -12,17 +12,24 @@ from tkinter import filedialog
 from tkinter import messagebox
 
 
-
-text_test = '1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-
+# reading folder directory backup
+with open(r'D:\Desktop\Fresh Python\Projects_1\Bronha-Printer-v2\backup-directory.txt', 'r') as f:
+        folder_location_program = f.readline() 
+f.close()
 
 
 def get_the_folder_location():
     folder_location_program = filedialog.askdirectory()
-    return(folder_location_program)
+    label_where_to_save.delete(0, END)
+    label_where_to_save.insert(INSERT, folder_location_program)
+    
+
+    with open(r'D:\Desktop\Fresh Python\Projects_1\Bronha-Printer-v2\backup-directory.txt', 'w') as f:
+        f.write(folder_location_program)  
+    f.close()
 
 
-
+# starting interface
 root = Tk()
 root.title('B. PRINTER')
 root.geometry("530x460+500+300")
@@ -30,17 +37,15 @@ root.resizable(False,False)
 #root.iconbitmap(r"D:\Desktop\Fresh Python\Projects_1\Bronha Printer v2\download.ico")
 
 
-
-
-
-
 label_version_text = Label(root, text='version 2.0', fg="blue4").grid(row= 0, column=0)
 
 #image 
-logo_img = PhotoImage (file = r"D:\Desktop\Fresh Python\Projects_1\Bronha Printer v2\title.png")
+logo_img = PhotoImage (file = r"D:\Desktop\Fresh Python\Projects_1\Bronha-Printer-v2\title.png")
 label_logo_img = Label(root, image= logo_img ).grid(row=1, column=2)
 
-label_where_to_save = Label(root, text='D:\Desktop\Fresh Python\Projects_1\Bronha Printer v2\title.png\ ', width=60).grid(row=2, column=1, columnspan=4)
+label_where_to_save = Entry(root, width=60)
+label_where_to_save.grid(row=2, column=1, columnspan=4)
+label_where_to_save.insert(INSERT, folder_location_program)
 
 button_change_directory = Button(text="Change Directory", command= lambda : get_the_folder_location()).grid(row=3, column=2)
 
@@ -70,18 +75,7 @@ label_space_row_10 = Label(root, text ='').grid(row=10, column=0)
 label_infos = Listbox(root, height=8, width=50, fg="blue4", bg ="gray80")
 label_infos.grid(row= 11, column=1, columnspan=2, sticky='w')
 
-label_infos.insert(END, text_test)
-label_infos.insert(END, text_test)
-label_infos.insert(END, text_test)
-label_infos.insert(END, text_test)
-label_infos.insert(END, text_test)
-label_infos.insert(END, text_test)
-label_infos.insert(END, text_test)
-label_infos.insert(END, text_test)
-label_infos.insert(END, text_test)
-label_infos.insert(END, text_test)
 button_zip_file = Button(root, text='Zip Files').grid(row=11, column=3)
-
 
 root.mainloop()
 
