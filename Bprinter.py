@@ -34,12 +34,14 @@ root.geometry("530x460+500+300")
 root.resizable(False,False)
 #root.iconbitmap(r"D:\Desktop\Fresh Python\Projects_1\Bronha Printer v2\download.ico")
 
-#                   tkinter interface lines
+#               tkinter interface lines
 #line 0
 label_version_text = Label(root, text='version 2.0', fg="blue4").grid(row= 0, column=0)
 #line 1
-logo_img = PhotoImage (file = r"D:\Desktop\Fresh Python\Projects_1\Bronha-Printer-v2\title.png")
-label_logo_img = Label(root, image= logo_img ).grid(row=1, column=2)
+logo_img = PhotoImage (file = r"D:\Desktop\Fresh Python\Projects_1\Bronha-Printer-v2\new-logo-img.png")
+label_logo_img = Label(root, image= logo_img ).grid(row=0, column=3, rowspan=2)
+logo_title = PhotoImage (file = r"D:\Desktop\Fresh Python\Projects_1\Bronha-Printer-v2\title.png")
+label_logo_title = Label(root, image= logo_title ).grid(row=1, column=2)
 #line 2
 label_where_to_save = Entry(root, width=60)
 label_where_to_save.grid(row=2, column=1, columnspan=4)
