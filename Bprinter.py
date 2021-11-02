@@ -10,10 +10,15 @@ import threading
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
+import sys
 
-# fix this function (file is not in the folder)
+
+#print (sys.path[0])
+location_backup_txt = '{}/backup-folder-location.txt'.format(sys.path[0])
+
+
 # reading folder directory backup
-with open(r'backup-directory.txt', 'r') as f:
+with open(location_backup_txt, 'r') as f:
         folder_location_program = f.readline() 
 f.close()
 
@@ -22,7 +27,7 @@ def get_the_folder_location():
     folder_location_program = filedialog.askdirectory()
     label_where_to_save.delete(0, END)
     label_where_to_save.insert(INSERT, folder_location_program)    
-    with open(r'backup-directory.txt', 'w') as f:
+    with open(location_backup_txt, 'w') as f:
         f.write(folder_location_program)  
     f.close()
 
