@@ -12,7 +12,6 @@ from tkinter import filedialog
 from tkinter import messagebox
 import sys
 
-
 #using a list cause that can be changed in functions 
 counter = [0]
 new_driver = 'driver'
@@ -44,6 +43,7 @@ def get_the_folder_location():
 def change_new_driver(new_driver):
     return new_driver + str(1)
 
+#
 def change_number_variable(number_variable):
     return(number_variable + str(len(counter)))
     
@@ -72,9 +72,7 @@ def create_new_folder():
     counter.append(1)
     
 
-def make_print_and_close_driver(driver):    
-
-
+def make_print_and_close_driver():  
     print('start')
      
     number_variable = int(len(counter)-2)
@@ -83,7 +81,7 @@ def make_print_and_close_driver(driver):
     make_print_and_close_driver_2(number_variable)
 
 def make_print_and_close_driver_2(number):
-    print(number)
+    print(number)    
     local_to_save = label_where_to_save.get()
     name_folder = entry_folder_name.get()
     url = entry_url_print.get()
@@ -119,7 +117,7 @@ def make_print_and_close_driver_2(number):
             print('finished ')
 
             #label_infos.delete(number, END)
-            number_of_prints.append(1)
+            number_of_prints.append(1)            
             label_infos.insert(number, str('Generated {}: {}'.format((len(number_of_prints)-1),name_print)))     
            
 
@@ -129,7 +127,6 @@ def start_new_thread():
 def increment_working_message(check_if_working):
     check_if_working.append(1)
     
-
 def decrement_working_message(check_if_working):
     check_if_working.pop()
 
@@ -140,7 +137,7 @@ def display_and_hide_working_message(check_if_working):
         
     else:
         label_info_workink.grid_forget()
-        
+       
 
 # starting interface
 root = Tk()
@@ -207,8 +204,6 @@ label_infos.grid(row= 12, column=1, columnspan=2, sticky='w')
 button_zip_file = Button(root, text='Zip Files')
 button_zip_file.grid(row=12, column=3)
 #button_zip_file = Button(root, text='Zip Files', command=make_a_full_screenshot).grid(row=11, column=3)
-
-
 #line 13
 label_version_text = Label(root, text='version 2.2').grid(row= 13, column=0)
 
