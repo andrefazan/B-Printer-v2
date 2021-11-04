@@ -16,6 +16,8 @@ import sys
 #using a list cause that can be changed in functions 
 counter = [0]
 new_driver = 'driver'
+check_if_working = [0]
+number_of_prints = [0]
 
 #web driver config
 options = webdriver.ChromeOptions()
@@ -47,6 +49,10 @@ def change_number_variable(number_variable):
     
 #screenshot function
 def make_a_full_screenshot(counter): 
+
+    increment_working_message(check_if_working)
+    display_and_hide_working_message(check_if_working)
+
     global new_driver
 
     #check if is the first print, to create the folder
@@ -109,19 +115,41 @@ def make_print_and_close_driver_2(number):
         if need_wait == False:
             driver.find_element_by_tag_name('body').screenshot(path_print)
             driver.quit()
+            decrement_working_message(check_if_working)
+            display_and_hide_working_message(check_if_working)
             print('finished ')
 
             #label_infos.delete(number, END)
-            label_infos.insert(number, str('OK {}'.format(name_print)))     
+            number_of_prints.append(1)
+            label_infos.insert(number, str('Generated {}: {}'.format((len(number_of_prints)-1),name_print)))     
            
 
 def start_new_thread():
     threading.Thread(target= make_a_full_screenshot, args=[counter]).start()
 
+def increment_working_message(check_if_working):
+    check_if_working.append(1)
+    
+
+def decrement_working_message(check_if_working):
+    check_if_working.pop()
+
+
+def display_and_hide_working_message(check_if_working):
+    if len(check_if_working) > 1:
+        label_info_workink.grid(row= 11, column=1, columnspan=2)
+        
+    else:
+        label_info_workink.grid_forget()
+        
+
+
+    
+
 # starting interface
 root = Tk()
 root.title('B. PRINTER')
-root.geometry("530x460+500+300")
+root.geometry("530x480+500+300")
 root.resizable(False,False)
 #root.iconbitmap(r"D:\Desktop\Fresh Python\Projects_1\Bronha Printer v2\download.ico")
 
@@ -174,12 +202,18 @@ entry_url_print.grid(row=9, column=2)
 text_prints_prog = Button(root, text='RUN', width=10,  command=start_new_thread).grid(row=9, column=3, sticky='w')
 label_space_row_10 = Label(root, text ='').grid(row=10, column=0)
 #line 11
-label_infos = Listbox(root, height=8, width=50, fg="blue4", bg ="gray80")
-label_infos.grid(row= 11, column=1, columnspan=2, sticky='w')
-button_zip_file = Button(root, text='Zip Files')
-button_zip_file.grid(row=11, column=3)
-#button_zip_file = Button(root, text='Zip Files', command=make_a_full_screenshot).grid(row=11, column=3)
+label_info_workink = Label(root, height=1, width=30, fg="white", bg ="red", text= 'Working. Please dont close the program')
+label_space_row = Label(root, text ='').grid(row=11, column=0)
+#label_info_workink.grid(row= 11, column=2)
 #line 12
-label_version_text = Label(root, text='version 2.2').grid(row= 12, column=0)
+label_infos = Listbox(root, height=8, width=50, fg="blue4", bg ="gray80")
+label_infos.grid(row= 12, column=1, columnspan=2, sticky='w')
+button_zip_file = Button(root, text='Zip Files')
+button_zip_file.grid(row=12, column=3)
+#button_zip_file = Button(root, text='Zip Files', command=make_a_full_screenshot).grid(row=11, column=3)
+
+
+#line 13
+label_version_text = Label(root, text='version 2.2').grid(row= 13, column=0)
 
 root.mainloop()
