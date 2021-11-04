@@ -62,7 +62,7 @@ def make_a_full_screenshot(counter):
 
     new_driver = change_new_driver(new_driver)     
     print(new_driver)   
-    make_print_and_close_driver(new_driver)
+    make_print_and_close_driver()
 
 def create_new_folder():
     local_to_save = label_where_to_save.get()
@@ -137,7 +137,7 @@ def display_and_hide_working_message(check_if_working):
         
     else:
         label_info_workink.grid_forget()
-       
+        
 
 # starting interface
 root = Tk()
