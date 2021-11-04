@@ -95,7 +95,6 @@ def make_print_and_close_driver_2(number):
 
     #label_infos.insert(number, str('GENERATING :{}'.format(name_print))) 
 
-
     driver = webdriver.Chrome(ChromeDriverManager().install(), options= options)             
     driver.get(url)
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
@@ -142,9 +141,6 @@ def display_and_hide_working_message(check_if_working):
     else:
         label_info_workink.grid_forget()
         
-
-
-    
 
 # starting interface
 root = Tk()
