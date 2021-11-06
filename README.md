@@ -1,4 +1,4 @@
-# Bronha-Printer-v2
+# B.Printer-v2
 Screenshot (desk and mobile) generator for EMKT team
 
 
