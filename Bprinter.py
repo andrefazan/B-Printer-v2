@@ -1,31 +1,57 @@
-
-
-#libraries
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-import os
-import time
-import shutil
+#native libraries
+import sys
 import threading
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
-import sys
+import os
+import shutil
+import pip
 
-#using a list cause that can be changed in functions 
+#check if libraries are installed 
+def check_if_library_selenium_are_installed():
+    try:    
+        from selenium import webdriver
+        #test message
+        print('ok selenium')
+    except:
+        pip.main(['install', 'selenium'])       
+
+def check_if_library_webdrivermanager_are_installed():
+    try:    
+        from webdriver_manager.chrome import ChromeDriverManager
+        #test message
+        print('ok webdriver-manager')
+    except:
+        pip.main(['install', 'webdriver-manager'])       
+
+
+#checking libraries
+check_if_library_selenium_are_installed()
+check_if_library_webdrivermanager_are_installed()
+
+
+#importing non-native libraries
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+
+
+
+
+#using a list cause that can be changed in functions D:
 counter = [0]
-new_driver = 'driver'
 check_if_working = [0]
 number_of_prints = [0]
+new_driver = 'driver'
 
 #web driver config
 options = webdriver.ChromeOptions()
 options.headless = True
 
-#using sys to get the path to the backup folder location txt file
+#using sys to get the path in the user PC to make the "backup folder location" txt file
 location_backup_txt = '{}/backup-folder-location.txt'.format(sys.path[0])
 
-# reading folder directory backup
+# reading folder backup
 with open(location_backup_txt, 'r') as f:
         folder_location_program = f.readline() 
 f.close()
