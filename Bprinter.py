@@ -38,7 +38,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 
-#using a list cause that can be changed in functions D:
+#using a list because that can be changed in a functions D: (I dont know why, but the global call function didnt work)   (  D:  ) ** 2
 counter = [0]
 check_if_working = [0]
 number_of_prints = [0]
@@ -127,12 +127,21 @@ def make_print_and_close_driver_2(number):
 
     #function that ensures all images are loaded
     number_of_images_in_the_website = driver.execute_script('return document.images.length')
+    print(number_of_images_in_the_website)
+ 
+
+
+
+
     images_loading = True
     while images_loading == True:         
         need_wait = False     
         for i in range(number_of_images_in_the_website - 1):
-            image = driver.execute_script('return document.images[{}].complete'.format(int(i+1)))
+
+            #verify if image are loaded
+            image = return_image_load_state(driver, i)
             if image != True:
+                #print('need wait') -- test
                 need_wait = True
 
         if need_wait == False:
@@ -145,7 +154,18 @@ def make_print_and_close_driver_2(number):
             #label_infos.delete(number, END)
             number_of_prints.append(1)            
             label_infos.insert(number, str('Generated {}: {}'.format((len(number_of_prints)-1),name_print)))     
-           
+
+def return_image_load_state(driver, image_number):    
+    try:
+        image = driver.execute_script('return document.images[{}].complete'.format(int(image_number+1))) 
+        print(image_number)               
+        return(image)
+    except:
+        #some sites may bug this function, so i did that    '-'
+        return(True)    
+   
+
+
 
 def start_new_thread():
     threading.Thread(target= make_a_full_screenshot, args=[counter]).start()
