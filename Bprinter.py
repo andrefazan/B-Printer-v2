@@ -44,9 +44,20 @@ check_if_working = [0]
 number_of_prints = [0]
 new_driver = 'driver'
 
-#web driver config
+#web driver config DESK
 options = webdriver.ChromeOptions()
 options.headless = True
+
+#web driver config MOBILE
+mobile_emulation = {
+    "deviceMetrics": {"pixelRatio": 3.0 },
+    "userAgent": "Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19"
+}
+options_mobile = webdriver.ChromeOptions()
+options_mobile.add_argument("--start-maximized")
+options_mobile.add_experimental_option("mobileEmulation", mobile_emulation)
+options_mobile.headless = True
+
 
 #using sys to get the path in the user PC to make the "backup folder location" txt file
 location_backup_txt = '{}/backup-folder-location.txt'.format(sys.path[0])
@@ -141,7 +152,7 @@ def make_print_and_close_driver_2(number):
             #verify if image are loaded
             image = return_image_load_state(driver, i)
             if image != True:
-                #print('need wait') -- test
+                print('need wait', i)
                 need_wait = True
 
         if need_wait == False:
