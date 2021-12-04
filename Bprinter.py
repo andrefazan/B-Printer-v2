@@ -80,9 +80,7 @@ def get_the_folder_location():
 def change_new_driver(new_driver):
     return new_driver + str(1)
 
-#
-def change_number_variable(number_variable):
-    return(number_variable + str(len(counter)))
+
     
 #screenshot function
 def make_a_full_screenshot(counter): 
@@ -99,7 +97,7 @@ def make_a_full_screenshot(counter):
 
     new_driver = change_new_driver(new_driver)     
     print(new_driver)   
-    make_print_and_close_driver()
+    increment_listbox_line_number()
 
 def create_new_folder():
     local_to_save = label_where_to_save.get()
@@ -109,16 +107,12 @@ def create_new_folder():
     counter.append(1)
     
 
-def make_print_and_close_driver():  
-    print('start')
-     
-    number_variable = int(len(counter)-2)
-    #number_variable = change_number_variable(number_variable)
+def increment_listbox_line_number():       
+    listbox_line_to_write = int(len(counter)-2)
+    make_print_and_close_driver(listbox_line_to_write)
 
-    make_print_and_close_driver_2(number_variable)
-
-def make_print_and_close_driver_2(number):
-    print(number)    
+def make_print_and_close_driver(listbox_line_to_write):
+    print(listbox_line_to_write)    
     local_to_save = label_where_to_save.get()
     name_folder = entry_folder_name.get()
     url = entry_url_print.get()
@@ -127,8 +121,6 @@ def make_print_and_close_driver_2(number):
     #delete entry values (name and url)
     entry_url_print.delete(0, END)
     entry_name_print.delete(0, END)
-
-    #label_infos.insert(number, str('GENERATING :{}'.format(name_print))) 
 
     driver = webdriver.Chrome(ChromeDriverManager().install(), options= options)             
     driver.get(url)
@@ -162,9 +154,8 @@ def make_print_and_close_driver_2(number):
             display_and_hide_working_message(check_if_working)
             print('finished ')
 
-            #label_infos.delete(number, END)
             number_of_prints.append(1)            
-            label_infos.insert(number, str('Generated {}: {}'.format((len(number_of_prints)-1),name_print)))     
+            label_infos.insert(listbox_line_to_write, str('Generated {}: {}'.format((len(number_of_prints)-1),name_print)))     
 
 def return_image_load_state(driver, image_number):    
     try:
