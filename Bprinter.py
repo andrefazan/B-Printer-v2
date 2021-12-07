@@ -84,7 +84,7 @@ def change_new_driver(new_driver):
     
 #screenshot function
 def make_a_full_screenshot(counter): 
-
+    #message 'working' functions
     increment_working_message(check_if_working)
     display_and_hide_working_message(check_if_working)
 
@@ -122,6 +122,7 @@ def make_print_and_close_driver(listbox_line_to_write):
     entry_url_print.delete(0, END)
     entry_name_print.delete(0, END)
 
+
     driver = webdriver.Chrome(ChromeDriverManager().install(), options= options)             
     driver.get(url)
     S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
@@ -132,10 +133,6 @@ def make_print_and_close_driver(listbox_line_to_write):
     number_of_images_in_the_website = driver.execute_script('return document.images.length')
     print(number_of_images_in_the_website)
  
-
-
-
-
     images_loading = True
     while images_loading == True:         
         need_wait = False     
@@ -143,8 +140,7 @@ def make_print_and_close_driver(listbox_line_to_write):
 
             #verify if image are loaded
             image = return_image_load_state(driver, i)
-            if image != True:
-                print('need wait', i)
+            if image != True:                
                 need_wait = True
 
         if need_wait == False:
@@ -228,7 +224,8 @@ entry_folder_name.insert(INSERT, 'PRINTS-PROG-V')
 check_button_desk = Checkbutton(text='Screenshot Desk', bg ="gray80")
 check_button_desk.grid(row=6, column=2)
 check_button_desk.select()
-check_button_mobile = Checkbutton(text='Screenshot Mobile', bg ="gray80").grid(row=6, column=3)
+check_button_mobile = Checkbutton(text='Screenshot Mobile', bg ="gray80")
+check_button_mobile.grid(row=6, column=3)
 #line 7
 label_space_row_7 = Label(root, text ='').grid(row=7, column=0)
 #line 8
